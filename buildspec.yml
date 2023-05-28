@@ -1,24 +1,13 @@
 version: 0.2
 
-env:
-  variables:
-    AWS_REGION: "ap-south-1"
-    AWS_DEFAULT_REGION: "ap-south-1"
-    ECR_REGISTRY: "390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile"
-    AWS_ACCOUNT_ID: "390004561073"
-    
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - export ECR_REGISTRY=390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
-
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 390004561073.dkr.ecr.ap-south-1.amazonaws.com
   build:
     commands:
-      - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t dockerfile .
-  post_build:
-    commands:
-      - echo Build completed on `date`
+      - docker build -t dockerfile:latest .
+      - echo Pushing the Docker image...
+      - docker push 390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile:latest
