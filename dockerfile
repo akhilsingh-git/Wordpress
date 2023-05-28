@@ -1,14 +1,19 @@
-# Pull the official WordPress image as our base
-FROM wordpress:latest
+# Use an official PHP runtime with Apache as a parent image
+FROM php:7.4-apache
 
-# Use Apache
+# Enable Apache mod_rewrite for WordPress permalinks
 RUN a2enmod rewrite
 
-# Install additional PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql
+# Copy the entire project and its contents into the Docker image
+COPY . /var/www/html/
 
-# Copy the entire contents of our project into our Docker container
-COPY . /var/www/html
+# Set ownership of all files to the Apache user
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
 
+# Expose port 80 for the Apache web server
+EXPOSE 80
 
+# Update the default apache site with the config we created.
+ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 
