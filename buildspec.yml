@@ -4,7 +4,7 @@ env:
   variables:
     AWS_REGION: "ap-south-1"
     AWS_DEFAULT_REGION: "ap-south-1"
-    ECR_REGISTRY: "390004561073.dkr.ecr.ap-south-1.amazonaws.com"
+    ECR_REGISTRY: "390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile"
     AWS_ACCOUNT_ID: "390004561073"
     
 phases:
