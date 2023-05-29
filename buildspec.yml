@@ -10,12 +10,13 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t dockerfile .
-      - docker tag dockerfile:latest 390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile:latest      
+      - docker tag dockerfile:latest 390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push 390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile:latest
-      
-      
-      
+      - printf '[{"name":"dockerfile","imageUri":"390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile:latest"}]' > imagedefinitions.json
+
+artifacts:
+  files: imagedefinitions.json
