@@ -18,3 +18,4 @@ phases:
       - docker push 390004561073.dkr.ecr.ap-south-1.amazonaws.com/dockerfile:latest
       
       
+      
