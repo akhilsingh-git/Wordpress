@@ -1,5 +1,3 @@
-# CleverTap-Assignment
-
 You are expected to work with Docker (for application packaging and deployment), AWS (for infrastructure), Cloudformation or Terraform, or any other infrastructure as code framework (for provisioning and maintaining infrastructure)To complete the task: - Check-in the latest version of WordPress into a git repository
 
  - Add support to dockerise the wordpress and run /serve it with Apache and PHP
